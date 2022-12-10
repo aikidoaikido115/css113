@@ -12,11 +12,11 @@ graph = {
 }
 
 def dijkstra(graph, start, goal):
-    shortest_distance = {}
+    shortest_distance = {} # {'a':0,'b':inf,'c':inf........}
     track_predecessor = {}
     unseen_node = graph #ตอนแรกจะเท่ากับกราฟแล้วจะค่อยๆหายไปจนเป็น {} เพราะ pop ออก
     infinity = 99999999
-    track_path = []
+    track_path = [] #ans
 
     for node in unseen_node:
         shortest_distance[node] = infinity #ทำให้ทุก node เป็น inf
@@ -29,7 +29,7 @@ def dijkstra(graph, start, goal):
             if min_distance_node is None:
                 min_distance_node = node # เป็น 'a'
             elif shortest_distance[node] < shortest_distance[min_distance_node]:
-                min_distance_node = node #ถ้ามีน้อยกว่าให้สลับ ในตอนแรกๆจะเป็น inf เลยไม่น้อยกว่า **ต้นเหตุที่ unseen ค่อยๆหายคือบรรทัดนี้กับ pop
+                min_distance_node = node #ถ้ามีน้อยกว่าให้สลับ ในตอนแรกๆจะเป็น inf เลยไม่น้อยกว่า **เพราะ unseen ค่อยๆหายคือบรรทัดนี้กับ pop
         
         #ใช้ graph เพราะจะใช้ข้อมูลในนั้น ไม่เอา unseen_node
         path_option = graph[min_distance_node].items() # dict ที่มี value เป็น dict อีกทีนึงเลยใช้ items() ได้
@@ -60,3 +60,5 @@ def dijkstra(graph, start, goal):
 
 #output a-b-d-f
 dijkstra(graph, 'a', 'f')
+
+#ref https://www.youtube.com/watch?v=Ub4-nG09PFw&list=PLr7KH5QXUale6a0EsWHPeTVvnIPL_oGO0&index=1&t=39s
